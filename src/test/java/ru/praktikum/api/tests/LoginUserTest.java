@@ -1,5 +1,7 @@
 package ru.praktikum.api.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 import ru.praktikum.api.model.CreateUserRequest;
@@ -10,6 +12,8 @@ import static org.hamcrest.Matchers.notNullValue;
 public class LoginUserTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Логинимся существующим пользователем")
+    @Description("Ожидаем авторизацию существующего пользователя")
     public void shouldLoginExistingUser() {
         CreateUserRequest user = registerRandomUser();
 
@@ -26,6 +30,8 @@ public class LoginUserTest extends BaseApiTest {
     }
 
     @Test
+    @DisplayName("Логинимся с неверными учетными данными")
+    @Description("Ожидаем ошибку при неверном пароле")
     public void shouldNotLoginWithInvalidCredentials() {
         CreateUserRequest user = registerRandomUser();
 

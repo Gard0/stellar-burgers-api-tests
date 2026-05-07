@@ -1,5 +1,7 @@
 package ru.praktikum.api.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 import ru.praktikum.api.model.CreateUserRequest;
@@ -10,6 +12,8 @@ import static org.hamcrest.Matchers.notNullValue;
 public class CreateUserTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Создаем уникального пользователя")
+    @Description("Ожидаем успешное создание пользователя и получение токенов авторизации")
     public void shouldCreateUniqueUser() {
         CreateUserRequest user = userSteps.generateRandomUser();
 
@@ -26,6 +30,8 @@ public class CreateUserTest extends BaseApiTest {
     }
 
     @Test
+    @DisplayName("Создаю зарегистрированного пользователя")
+    @Description("Ожидаю ошибку пользователь уже существует")
     public void shouldNotCreateExistingUser() {
         CreateUserRequest user = registerRandomUser();
 
@@ -38,6 +44,8 @@ public class CreateUserTest extends BaseApiTest {
     }
 
     @Test
+    @DisplayName("Создаем без обязательного поля")
+    @Description("Ожидаем ошибку при создании пользователя")
     public void shouldNotCreateUserWithoutRequiredField() {
         CreateUserRequest userWithoutName = new CreateUserRequest(
                 ru.praktikum.api.utils.UserGenerator.randomEmail(),

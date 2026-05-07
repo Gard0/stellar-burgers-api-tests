@@ -1,5 +1,7 @@
 package ru.praktikum.api.tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -11,6 +13,8 @@ import static org.hamcrest.Matchers.greaterThan;
 public class GetUserOrdersTest extends BaseApiTest {
 
     @Test
+    @DisplayName("Получаем заказы пользователя")
+    @Description("Ожидаем получение списка заказов пользователя")
     public void shouldGetOrdersOfAuthorizedUser() {
         registerRandomUser();
         List<String> ingredients = orderSteps.getValidIngredientIds();
@@ -25,6 +29,8 @@ public class GetUserOrdersTest extends BaseApiTest {
     }
 
     @Test
+    @DisplayName("Получаем заказы без авторизации")
+    @Description("Ожидаем ошибку авторизации")
     public void shouldNotGetOrdersOfUnauthorizedUser() {
         Response response = orderSteps.getUnauthorizedUserOrders();
 
